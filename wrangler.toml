@@ -1,0 +1,12 @@
+name = "hd2-loadout-manager"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "./public"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hd2-loadout-manager"
+database_id = "9d107a35-2514-4a81-8c13-a1a1912983ac"
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "hd2-assets"
