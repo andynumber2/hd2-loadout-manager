@@ -51,6 +51,10 @@ export async function onRequestPost({ request, env }) {
       return json({ error: 'Each stratagem must have stratagem_id and slot (1-4)' }, 400);
   }
 
+  const uniqueIds = new Set(stratagems.map(s => s.stratagem_id));
+  if (uniqueIds.size !== stratagems.length)
+    return json({ error: 'Duplicate stratagems are not allowed' }, 400);
+
   const share_id = genShareId();
   const now = new Date().toISOString().replace('T', ' ').slice(0, 19);
 

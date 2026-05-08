@@ -11,6 +11,7 @@ export async function onRequestPost({ request, env }) {
   if (username.length < 2 || username.length > 32) return json({ error: 'Username must be 2-32 characters' }, 400);
   if (!/^[a-zA-Z0-9_-]+$/.test(username)) return json({ error: 'Username may only contain letters, numbers, _ and -' }, 400);
   if (password.length < 6) return json({ error: 'Password must be at least 6 characters' }, 400);
+  if (password.length > 128) return json({ error: 'Password must be at most 128 characters' }, 400);
 
   const existing = await env.DB.prepare('SELECT id FROM users WHERE username = ?').bind(username).first();
   if (existing) return json({ error: 'Username already taken' }, 409);

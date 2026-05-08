@@ -252,6 +252,12 @@ saveBtn.addEventListener('click', async () => {
   let res;
   if (state.loadoutId) {
     res = await api.put('/loadouts/' + state.loadoutId, body);
+    if (res && res.ok) {
+      const orig = saveBtn.textContent;
+      saveBtn.textContent = 'SAVED';
+      setTimeout(() => { saveBtn.textContent = orig; }, 1500);
+      return;
+    }
   } else {
     res = await api.post('/loadouts', body);
     if (res && res.ok) {

@@ -45,7 +45,7 @@ export async function getUser(request, env) {
 }
 
 export function sessionCookie(token, maxAge = 604800) {
-  return `session=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAge}`;
+  return `session=${token}; Path=/; HttpOnly; SameSite=Lax; Secure; Max-Age=${maxAge}`;
 }
 
 export function json(data, status = 200) {
