@@ -48,4 +48,9 @@ describe('hashPassword', () => {
     const h2 = await hashPassword('password', 'salt2');
     expect(h1).not.toBe(h2);
   });
+  it('works with a salt from genSalt()', async () => {
+    const salt = genSalt();
+    const hash = await hashPassword('password', salt);
+    expect(hash).toMatch(/^[0-9a-f]{64}$/);
+  });
 });

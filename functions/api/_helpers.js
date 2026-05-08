@@ -22,8 +22,15 @@ export function genToken() {
 
 export function genShareId() {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  return Array.from(crypto.getRandomValues(new Uint8Array(8)), b =>
-    chars[b % 62]).join('');
+  let id = '';
+  while (id.length < 8) {
+    const bytes = crypto.getRandomValues(new Uint8Array(16));
+    for (const b of bytes) {
+      if (b < 248) id += chars[b % 62]; // 248 = floor(256/62)*62
+      if (id.length === 8) break;
+    }
+  }
+  return id;
 }
 
 export async function getUser(request, env) {
