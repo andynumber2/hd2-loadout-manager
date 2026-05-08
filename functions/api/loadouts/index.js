@@ -46,6 +46,11 @@ export async function onRequestPost({ request, env }) {
     return json({ error: 'enemy_faction must be terminids, automatons, or illuminate' }, 400);
   if (stratagems.length > 4) return json({ error: 'Maximum 4 stratagems per loadout' }, 400);
 
+  for (const s of stratagems) {
+    if (!s.stratagem_id || !s.slot || s.slot < 1 || s.slot > 4)
+      return json({ error: 'Each stratagem must have stratagem_id and slot (1-4)' }, 400);
+  }
+
   const share_id = genShareId();
   const now = new Date().toISOString().replace('T', ' ').slice(0, 19);
 
@@ -59,10 +64,12 @@ export async function onRequestPost({ request, env }) {
     primary_weapon_id, secondary_weapon_id, grenade_id, armor_id, booster_id, now
   ).run();
 
-  for (const s of stratagems) {
-    await env.DB.prepare(
-      'INSERT INTO loadout_stratagems (loadout_id, stratagem_id, slot) VALUES (?, ?, ?)'
-    ).bind(meta.last_row_id, s.stratagem_id, s.slot).run();
+  if (stratagems.length > 0) {
+    await env.DB.batch(
+      stratagems.map(s => env.DB.prepare(
+        'INSERT INTO loadout_stratagems (loadout_id, stratagem_id, slot) VALUES (?, ?, ?)'
+      ).bind(meta.last_row_id, s.stratagem_id, s.slot))
+    );
   }
 
   return json({ id: meta.last_row_id, share_id }, 201);
