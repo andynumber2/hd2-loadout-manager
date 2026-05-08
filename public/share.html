@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HD2 Loadout</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="nav-brand">HD2 LOADOUT MANAGER</a>
+  </nav>
+  <div class="container">
+    <div id="not-found" style="display:none">
+      <p class="empty-state">LOADOUT NOT FOUND OR NOT PUBLIC.</p>
+      <div style="text-align:center;margin-top:16px">
+        <a href="/" class="btn btn-primary">RETURN TO BASE</a>
+      </div>
+    </div>
+    <div id="share-container">
+      <div class="share-header">
+        <span class="faction-tag" id="faction-tag"></span>
+        <h1 id="loadout-name"></h1>
+        <div class="owner" id="loadout-owner"></div>
+      </div>
+      <div class="share-section">
+        <div class="share-section-title">STRATAGEMS</div>
+        <div class="share-slots" id="share-slots"></div>
+      </div>
+      <div class="share-section">
+        <div class="share-section-title">EQUIPMENT</div>
+        <div class="share-gear" id="share-gear"></div>
+      </div>
+      <div class="share-cta">
+        <p>WANT TO BUILD YOUR OWN?</p>
+        <a href="/" class="btn btn-primary">ENLIST NOW</a>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/js/share.js"></script>
+</body>
+</html>
