@@ -1,7 +1,12 @@
 import { hashPassword, genSalt, genToken, sessionCookie, json } from '../_helpers.js';
 
 export async function onRequestPost({ request, env }) {
-  const { username, password } = await request.json();
+  let username, password;
+  try {
+    ({ username, password } = await request.json());
+  } catch {
+    return json({ error: 'Invalid JSON' }, 400);
+  }
   if (!username || !password) return json({ error: 'Username and password required' }, 400);
   if (username.length < 2 || username.length > 32) return json({ error: 'Username must be 2-32 characters' }, 400);
   if (!/^[a-zA-Z0-9_-]+$/.test(username)) return json({ error: 'Username may only contain letters, numbers, _ and -' }, 400);

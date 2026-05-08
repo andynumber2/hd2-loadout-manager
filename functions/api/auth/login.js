@@ -1,7 +1,12 @@
-import { hashPassword, genToken, sessionCookie, json } from '../_helpers.js';
+import { hashPassword, genToken, sessionCookie, json, timingSafeEqual } from '../_helpers.js';
 
 export async function onRequestPost({ request, env }) {
-  const { username, password } = await request.json();
+  let username, password;
+  try {
+    ({ username, password } = await request.json());
+  } catch {
+    return json({ error: 'Invalid JSON' }, 400);
+  }
   if (!username || !password) return json({ error: 'Username and password required' }, 400);
 
   const user = await env.DB.prepare(
@@ -10,7 +15,7 @@ export async function onRequestPost({ request, env }) {
   if (!user) return json({ error: 'Invalid credentials' }, 401);
 
   const hash = await hashPassword(password, user.salt);
-  if (hash !== user.password_hash) return json({ error: 'Invalid credentials' }, 401);
+  if (!timingSafeEqual(hash, user.password_hash)) return json({ error: 'Invalid credentials' }, 401);
 
   const token = genToken();
   const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().replace('T', ' ').slice(0, 19);
