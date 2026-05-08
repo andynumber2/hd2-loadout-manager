@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HD2 Loadout Manager</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <div class="auth-wrap">
+    <div class="auth-title">SUPER EARTH ARMED FORCES<br>LOADOUT MANAGEMENT SYSTEM</div>
+    <div class="auth-tabs">
+      <div class="auth-tab" data-tab="login">LOGIN</div>
+      <div class="auth-tab" data-tab="register">REGISTER</div>
+    </div>
+    <form id="login-form" class="auth-form" style="display:none">
+      <div>
+        <label class="label" for="login-username">USERNAME</label>
+        <input type="text" id="login-username" autocomplete="username" required>
+      </div>
+      <div>
+        <label class="label" for="login-password">PASSWORD</label>
+        <input type="password" id="login-password" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">AUTHENTICATE</button>
+    </form>
+    <form id="register-form" class="auth-form" style="display:none">
+      <div>
+        <label class="label" for="reg-username">USERNAME</label>
+        <input type="text" id="reg-username" autocomplete="username" required minlength="2" maxlength="32">
+      </div>
+      <div>
+        <label class="label" for="reg-password">PASSWORD</label>
+        <input type="password" id="reg-password" autocomplete="new-password" required minlength="6">
+      </div>
+      <button type="submit" class="btn btn-primary">ENLIST</button>
+    </form>
+    <p id="error-msg" class="error-msg"></p>
+  </div>
+  <script type="module" src="/js/auth.js"></script>
+</body>
+</html>
