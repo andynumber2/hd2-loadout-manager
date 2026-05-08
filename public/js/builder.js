@@ -65,7 +65,7 @@ function populateSelects() {
 function fillSelect(id, items, placeholder) {
   const sel = document.getElementById(id);
   sel.innerHTML = '<option value="">-- ' + esc(placeholder) + ' --</option>' +
-    items.map(i => '<option value="' + i.id + '">' + esc(i.name) + '</option>').join('');
+    items.map(i => '<option value="' + esc(i.id) + '">' + esc(i.name) + '</option>').join('');
 }
 
 async function loadExisting(id) {
