@@ -6,7 +6,7 @@ const logoutBtn  = document.getElementById('logout-btn');
 
 async function init() {
   const meRes = await api.get('/auth/me');
-  if (!meRes) return;
+  if (!meRes || !meRes.ok) { window.location.href = '/'; return; }
   usernameEl.textContent = (await meRes.json()).username;
 
   const res  = await api.get('/loadouts');
@@ -44,7 +44,7 @@ listEl.addEventListener('click', async (e) => {
   const editBtn   = e.target.closest('[data-edit]');
   const deleteBtn = e.target.closest('[data-delete]');
   if (editBtn) {
-    window.location.href = `/builder.html?id=${editBtn.dataset.edit}`;
+    window.location.href = `/builder?id=${editBtn.dataset.edit}`;
   } else if (deleteBtn) {
     if (!confirm('Delete this loadout?')) return;
     await api.delete(`/loadouts/${deleteBtn.dataset.delete}`);

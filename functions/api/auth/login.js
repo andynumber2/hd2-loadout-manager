@@ -24,6 +24,6 @@ export async function onRequestPost({ request, env }) {
 
   return new Response(JSON.stringify({ id: user.id, username: user.username }), {
     status: 200,
-    headers: { 'Content-Type': 'application/json', 'Set-Cookie': sessionCookie(token) },
+    headers: { 'Content-Type': 'application/json', 'Set-Cookie': sessionCookie(token, request) },
   });
 }

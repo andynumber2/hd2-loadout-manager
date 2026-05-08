@@ -8,6 +8,6 @@ export async function onRequestPost({ request, env }) {
   }
   return new Response(JSON.stringify({ ok: true }), {
     status: 200,
-    headers: { 'Content-Type': 'application/json', 'Set-Cookie': sessionCookie('', 0) },
+    headers: { 'Content-Type': 'application/json', 'Set-Cookie': sessionCookie('', request, 0) },
   });
 }

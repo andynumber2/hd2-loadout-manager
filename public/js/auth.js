@@ -7,7 +7,7 @@ const tabs         = document.querySelectorAll('.auth-tab');
 
 async function checkAuth() {
   const res = await fetch('/api/auth/me', { credentials: 'same-origin' });
-  if (res.ok) window.location.href = '/loadouts.html';
+  if (res.ok) window.location.href = '/loadouts';
 }
 
 function switchTab(tab) {
@@ -27,7 +27,7 @@ loginForm.addEventListener('submit', async (e) => {
   const res  = await api.post('/auth/login', { username, password });
   const data = await res.json();
   if (!res.ok) { errorEl.textContent = data.error; return; }
-  window.location.href = '/loadouts.html';
+  window.location.href = '/loadouts';
 });
 
 registerForm.addEventListener('submit', async (e) => {
@@ -38,7 +38,7 @@ registerForm.addEventListener('submit', async (e) => {
   const res  = await api.post('/auth/register', { username, password });
   const data = await res.json();
   if (!res.ok) { errorEl.textContent = data.error; return; }
-  window.location.href = '/loadouts.html';
+  window.location.href = '/loadouts';
 });
 
 switchTab('login');

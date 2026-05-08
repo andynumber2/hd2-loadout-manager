@@ -26,7 +26,7 @@ const pageTitle    = document.getElementById('page-title');
 
 async function init() {
   const meRes = await api.get('/auth/me');
-  if (!meRes) return;
+  if (!meRes || !meRes.ok) { window.location.href = '/'; return; }
   usernameEl.textContent = (await meRes.json()).username;
 
   const [stratRes, weapRes, grenRes, armorRes, boostRes] = await Promise.all([
@@ -265,7 +265,7 @@ saveBtn.addEventListener('click', async () => {
       state.loadoutId = data.id;
       state.shareId   = data.share_id;
       pageTitle.textContent = 'EDIT LOADOUT';
-      window.history.replaceState(null, '', '/builder.html?id=' + state.loadoutId);
+      window.history.replaceState(null, '', '/builder?id=' + state.loadoutId);
       updateShareBox();
       return;
     }
