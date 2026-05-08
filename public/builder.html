@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loadout Builder — HD2</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <nav class="nav">
+    <a href="/loadouts.html" class="nav-brand">HD2 LOADOUT MANAGER</a>
+    <div class="nav-user">HELLDIVER: <span id="nav-username"></span></div>
+  </nav>
+  <div class="container">
+    <div class="page-header">
+      <div class="page-title" id="page-title">NEW LOADOUT</div>
+    </div>
+    <div class="builder">
+      <div class="builder-row">
+        <div class="builder-field grow">
+          <label class="label" for="loadout-name">LOADOUT NAME</label>
+          <input type="text" id="loadout-name" maxlength="64" placeholder="Enter name...">
+        </div>
+        <div class="builder-field">
+          <span class="label">TARGET ENEMY</span>
+          <div class="faction-btns">
+            <button class="faction-btn" data-faction="terminids">TERMINIDS</button>
+            <button class="faction-btn" data-faction="automatons">AUTOMATONS</button>
+            <button class="faction-btn" data-faction="illuminate">ILLUMINATE</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="label">STRATAGEMS</span>
+        <div class="slots" id="strat-slots">
+          <div class="slot" data-slot="0"><span class="slot-empty-icon">+</span><span class="slot-empty-label">SLOT 1</span></div>
+          <div class="slot" data-slot="1"><span class="slot-empty-icon">+</span><span class="slot-empty-label">SLOT 2</span></div>
+          <div class="slot" data-slot="2"><span class="slot-empty-icon">+</span><span class="slot-empty-label">SLOT 3</span></div>
+          <div class="slot" data-slot="3"><span class="slot-empty-icon">+</span><span class="slot-empty-label">SLOT 4</span></div>
+        </div>
+      </div>
+      <div>
+        <span class="label">EQUIPMENT</span>
+        <div class="gear-grid">
+          <div class="gear-field"><label class="label" for="primary">PRIMARY</label><select id="primary"></select></div>
+          <div class="gear-field"><label class="label" for="secondary">SECONDARY</label><select id="secondary"></select></div>
+          <div class="gear-field"><label class="label" for="grenade">GRENADE</label><select id="grenade"></select></div>
+          <div class="gear-field"><label class="label" for="armor">ARMOR</label><select id="armor"></select></div>
+          <div class="gear-field"><label class="label" for="booster">BOOSTER</label><select id="booster"></select></div>
+        </div>
+      </div>
+      <div>
+        <div class="public-row">
+          <input type="checkbox" id="is-public">
+          <label for="is-public">MAKE PUBLIC (generates share link)</label>
+        </div>
+        <div class="share-url-box" id="share-url-box">
+          <span class="share-url-text" id="share-url-text"></span>
+          <button class="copy-btn" id="copy-btn">[ COPY ]</button>
+        </div>
+      </div>
+      <div class="builder-actions">
+        <a href="/loadouts.html" class="btn">DISCARD</a>
+        <button class="btn btn-primary" id="save-btn">SAVE LOADOUT</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <div class="modal-title">SELECT STRATAGEM</div>
+      <div class="modal-filters">
+        <button class="cat-btn active" data-cat="all">ALL</button>
+        <button class="cat-btn" data-cat="Orbital">ORBITAL</button>
+        <button class="cat-btn" data-cat="Eagle">EAGLE</button>
+        <button class="cat-btn" data-cat="Support Weapon">SUPPORT</button>
+        <button class="cat-btn" data-cat="Backpack">BACKPACK</button>
+        <button class="cat-btn" data-cat="Mission">MISSION</button>
+        <button class="cat-btn" data-cat="Defense">DEFENSE</button>
+      </div>
+      <input type="text" class="modal-search" id="modal-search" placeholder="Search stratagems...">
+      <div class="strat-grid" id="strat-grid"></div>
+      <div class="modal-close-row"><button class="btn" id="modal-close">CLOSE</button></div>
+    </div>
+  </div>
+
+  <script type="module" src="/js/builder.js"></script>
+</body>
+</html>
