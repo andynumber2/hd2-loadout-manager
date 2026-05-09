@@ -5,7 +5,8 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
-    "dev": "wrangler pages dev"
+    "dev": "wrangler pages dev --persist-to ~/.hd2-dev-state",
+    "sync-local": "node scripts/sync-local.mjs"
   },
   "devDependencies": {
     "vitest": "^2.0.0",

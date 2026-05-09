@@ -13,13 +13,14 @@
 ```bash
 npm test             # run unit tests
 npm run test:watch   # watch mode
-npm run dev          # wrangler pages dev (local D1)
+npm run dev          # wrangler pages dev (persists to ~/.hd2-dev-state)
+npm run sync-local   # sync R2 images from production to local state (once per machine)
 ```
 
-Apply migrations locally:
+Apply migrations locally (must use same --persist-to as dev):
 ```bash
-wrangler d1 execute hd2-loadout-manager --local --file=migrations/0001_init.sql
-wrangler d1 execute hd2-loadout-manager --local --file=migrations/0002_seed_game_data.sql
+wrangler d1 execute hd2-loadout-manager --local --persist-to ~/.hd2-dev-state --file=migrations/0001_init.sql
+wrangler d1 execute hd2-loadout-manager --local --persist-to ~/.hd2-dev-state --file=migrations/0002_seed_game_data.sql
 ```
 
 ## Key Conventions

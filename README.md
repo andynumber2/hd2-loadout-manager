@@ -18,11 +18,15 @@ npm test          # vitest run
 npm run test:watch
 ```
 
-`wrangler pages dev` uses the local D1 database. Apply migrations first:
+`npm run dev` uses local D1 and a shared R2 state at `~/.hd2-dev-state`. First-time setup on a new machine:
 
 ```bash
-wrangler d1 execute hd2-loadout-manager --local --file=migrations/0001_init.sql
-wrangler d1 execute hd2-loadout-manager --local --file=migrations/0002_seed_game_data.sql
+# 1. Apply DB migrations
+wrangler d1 execute hd2-loadout-manager --local --persist-to ~/.hd2-dev-state --file=migrations/0001_init.sql
+wrangler d1 execute hd2-loadout-manager --local --persist-to ~/.hd2-dev-state --file=migrations/0002_seed_game_data.sql
+
+# 2. Sync images from production R2 (once per machine, works across all worktrees)
+npm run sync-local
 ```
 
 ## Deploy
@@ -39,7 +43,10 @@ wrangler d1 execute hd2-loadout-manager --file=migrations/0001_init.sql
 wrangler d1 execute hd2-loadout-manager --file=migrations/0002_seed_game_data.sql
 ```
 
-5. Enable R2 in your Cloudflare account, create the `hd2-assets` bucket, and upload game images using `scripts/upload-images.mjs`.
+5. Enable R2 in your Cloudflare account, create the `hd2-assets` bucket, and upload game images:
+   ```bash
+   node scripts/upload-images.mjs
+   ```
 
 ## Game Data Updates
 
@@ -58,6 +65,6 @@ No code deployment needed for content updates.
 public/           Static frontend (HTML/CSS/JS)
 functions/api/    Cloudflare Pages Functions (one file per endpoint)
 migrations/       D1 SQL migrations
-scripts/          Maintenance scripts (image upload)
+scripts/          Maintenance scripts (upload-images.mjs, sync-local.mjs)
 tests/            Vitest unit tests
 ```

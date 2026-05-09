@@ -156,12 +156,7 @@ async function uploadToR2(imageUrl, r2Key) {
   writeFileSync(tmp, buf);
 
   try {
-    execFileSync(WRANGLER, [
-      'r2', 'object', 'put',
-      `${BUCKET}/${r2Key}`,
-      `--file=${tmp}`,
-      `--content-type=${contentType}`,
-    ], { stdio: 'pipe' });
+    execFileSync(WRANGLER, ['r2', 'object', 'put', `${BUCKET}/${r2Key}`, `--file=${tmp}`, `--content-type=${contentType}`], { stdio: 'pipe' });
   } finally {
     unlinkSync(tmp);
   }

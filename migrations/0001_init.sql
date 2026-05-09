@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS sessions (
 
 CREATE TABLE IF NOT EXISTS stratagems (
   id               INTEGER PRIMARY KEY AUTOINCREMENT,
-  name             TEXT NOT NULL,
+  name             TEXT NOT NULL UNIQUE,
   category         TEXT NOT NULL,
   call_in_sequence TEXT,
   image_url        TEXT,
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS stratagems (
 
 CREATE TABLE IF NOT EXISTS weapons_primary (
   id        INTEGER PRIMARY KEY AUTOINCREMENT,
-  name      TEXT NOT NULL,
+  name      TEXT NOT NULL UNIQUE,
   type      TEXT,
   image_url TEXT,
   is_active INTEGER DEFAULT 1
@@ -32,21 +32,21 @@ CREATE TABLE IF NOT EXISTS weapons_primary (
 
 CREATE TABLE IF NOT EXISTS weapons_secondary (
   id        INTEGER PRIMARY KEY AUTOINCREMENT,
-  name      TEXT NOT NULL,
+  name      TEXT NOT NULL UNIQUE,
   image_url TEXT,
   is_active INTEGER DEFAULT 1
 );
 
 CREATE TABLE IF NOT EXISTS grenades (
   id        INTEGER PRIMARY KEY AUTOINCREMENT,
-  name      TEXT NOT NULL,
+  name      TEXT NOT NULL UNIQUE,
   image_url TEXT,
   is_active INTEGER DEFAULT 1
 );
 
 CREATE TABLE IF NOT EXISTS armor (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
-  name        TEXT NOT NULL,
+  name        TEXT NOT NULL UNIQUE,
   armor_class TEXT,
   passive     TEXT,
   image_url   TEXT,
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS armor (
 
 CREATE TABLE IF NOT EXISTS boosters (
   id        INTEGER PRIMARY KEY AUTOINCREMENT,
-  name      TEXT NOT NULL,
+  name      TEXT NOT NULL UNIQUE,
   image_url TEXT,
   is_active INTEGER DEFAULT 1
 );

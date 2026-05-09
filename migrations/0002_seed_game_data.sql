@@ -5,7 +5,7 @@
 -- ------------------------------------------------------------
 -- Stratagems
 -- ------------------------------------------------------------
-INSERT INTO stratagems (name, category, call_in_sequence, image_url) VALUES
+INSERT OR IGNORE INTO stratagems (name, category, call_in_sequence, image_url) VALUES
   -- Support Weapons
   ('MG-43 Machine Gun', 'Support Weapon', 'down,left,down,up,right', '/api/assets/stratagems/mg-43-machine-gun.png'),
   ('EAT-17 Expendable Anti-Tank', 'Support Weapon', 'down,down,left,up,right', '/api/assets/stratagems/eat-17-expendable-anti-tank.png'),
@@ -125,7 +125,7 @@ INSERT INTO stratagems (name, category, call_in_sequence, image_url) VALUES
 -- ------------------------------------------------------------
 -- Primary Weapons
 -- ------------------------------------------------------------
-INSERT INTO weapons_primary (name, type, image_url) VALUES
+INSERT OR IGNORE INTO weapons_primary (name, type, image_url) VALUES
   -- Assault Rifles
   ('AR-23 Liberator', 'Assault Rifle', '/api/assets/weapons/primary/ar-23-liberator.png'),
   ('AR-23P Liberator Penetrator', 'Assault Rifle', '/api/assets/weapons/primary/ar-23p-liberator-penetrator.png'),
@@ -187,7 +187,7 @@ INSERT INTO weapons_primary (name, type, image_url) VALUES
 -- ------------------------------------------------------------
 -- Secondary Weapons
 -- ------------------------------------------------------------
-INSERT INTO weapons_secondary (name, image_url) VALUES
+INSERT OR IGNORE INTO weapons_secondary (name, image_url) VALUES
   -- Pistols
   ('P-92 Warrant', '/api/assets/weapons/secondary/p-92-warrant.png'),
   ('P-2 Peacemaker', '/api/assets/weapons/secondary/p-2-peacemaker.png'),
@@ -218,7 +218,7 @@ INSERT INTO weapons_secondary (name, image_url) VALUES
 -- ------------------------------------------------------------
 -- Grenades
 -- ------------------------------------------------------------
-INSERT INTO grenades (name, image_url) VALUES
+INSERT OR IGNORE INTO grenades (name, image_url) VALUES
   ('TED-63 Dynamite', '/api/assets/grenades/ted-63-dynamite.png'),
   ('G-6 Frag', '/api/assets/grenades/g-6-frag.png'),
   ('G-12 High Explosive', '/api/assets/grenades/g-12-high-explosive.png'),
@@ -243,7 +243,7 @@ INSERT INTO grenades (name, image_url) VALUES
 -- ------------------------------------------------------------
 -- Armor
 -- ------------------------------------------------------------
-INSERT INTO armor (name, armor_class, passive, image_url) VALUES
+INSERT OR IGNORE INTO armor (name, armor_class, passive, image_url) VALUES
   -- Light Armor
   ('SC-37 Legionnaire', 'light', 'Servo-Assisted', '/api/assets/armor/sc-37-legionnaire.png'),
   ('SC-34 Infiltrator', 'light', 'Scout', '/api/assets/armor/sc-34-infiltrator.png'),
@@ -355,7 +355,7 @@ INSERT INTO armor (name, armor_class, passive, image_url) VALUES
 -- ------------------------------------------------------------
 -- Boosters
 -- ------------------------------------------------------------
-INSERT INTO boosters (name, image_url) VALUES
+INSERT OR IGNORE INTO boosters (name, image_url) VALUES
   ('Hellpod Space Optimization', '/api/assets/boosters/hellpod-space-optimization.png'),
   ('Vitality Enhancement', '/api/assets/boosters/vitality-enhancement.png'),
   ('UAV Recon Booster', '/api/assets/boosters/uav-recon-booster.png'),
