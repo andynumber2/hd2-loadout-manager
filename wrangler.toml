@@ -5,7 +5,7 @@ pages_build_output_dir = "./public"
 [[d1_databases]]
 binding = "DB"
 database_name = "hd2-loadout-manager"
-database_id = "9d107a35-2514-4a81-8c13-a1a1912983ac"
+database_id = "3a0219fb-604f-47d8-8ba8-f52b5f42ee3e"
 
 [[r2_buckets]]
 binding = "IMAGES"
