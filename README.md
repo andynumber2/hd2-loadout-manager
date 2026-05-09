@@ -22,8 +22,8 @@ npm run test:watch
 
 ```bash
 # 1. Apply DB migrations
-wrangler d1 execute hd2-loadout-manager --local --persist-to ~/.hd2-dev-state --file=migrations/0001_init.sql
-wrangler d1 execute hd2-loadout-manager --local --persist-to ~/.hd2-dev-state --file=migrations/0002_seed_game_data.sql
+npx wrangler d1 execute hd2-loadout-manager --local --persist-to ~/.hd2-dev-state --file=migrations/0001_init.sql
+npx wrangler d1 execute hd2-loadout-manager --local --persist-to ~/.hd2-dev-state --file=migrations/0002_seed_game_data.sql
 
 # 2. Sync images from production R2 (once per machine, works across all worktrees)
 npm run sync-local
@@ -39,8 +39,8 @@ npm run sync-local
 4. Apply migrations to production D1:
 
 ```bash
-wrangler d1 execute hd2-loadout-manager --file=migrations/0001_init.sql
-wrangler d1 execute hd2-loadout-manager --file=migrations/0002_seed_game_data.sql
+npx wrangler d1 execute hd2-loadout-manager --file=migrations/0001_init.sql
+npx wrangler d1 execute hd2-loadout-manager --file=migrations/0002_seed_game_data.sql
 ```
 
 5. Enable R2 in your Cloudflare account, create the `hd2-assets` bucket, and upload game images:
@@ -55,7 +55,7 @@ After a Helldivers 2 patch:
 1. Review [helldivers.wiki.gg](https://helldivers.wiki.gg) for additions/changes/removals
 2. Upload any new images to the `hd2-assets` R2 bucket using `scripts/upload-images.mjs`
 3. Write a new migration file (`migrations/000N_patch_<date>.sql`) with `INSERT`, `UPDATE`, and/or `SET is_active = 0` statements
-4. Apply: `wrangler d1 execute hd2-loadout-manager --file=migrations/000N_patch_<date>.sql`
+4. Apply: `npx wrangler d1 execute hd2-loadout-manager --file=migrations/000N_patch_<date>.sql`
 
 No code deployment needed for content updates.
 
